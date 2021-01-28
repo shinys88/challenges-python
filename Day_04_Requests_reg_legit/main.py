@@ -14,7 +14,8 @@ def legit() :
 
   for url in url_arr :
     
-    url = url.strip()
+    url = url.strip().replace("\t","")
+    url = re.sub(' +', '', url)
     # 정규표현식 - https://wikidocs.net/4308
     p = re.compile('^http(s)?://', re.I)
     m = p.match(url)
