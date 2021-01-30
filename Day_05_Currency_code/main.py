@@ -18,7 +18,7 @@ for tr in trs :
     country = tr.find_all("td")[0].string
     code = tr.find_all("td")[2].string
     number = int(tr.find_all("td")[3].string)
-    code_numbers.append({'country':country,'code':code,'number':number})
+    code_numbers.append({'country':country.capitalize(),'code':code,'number':number})
   except :
     pass
 
