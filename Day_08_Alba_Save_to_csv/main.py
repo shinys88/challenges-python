@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 
 os.system("clear")
+
 alba_url = "http://www.alba.co.kr"
 
 result = requests.get(alba_url)
@@ -57,7 +58,7 @@ for brand in brand_list:
 #파일 저장.
 for cp in company_list.items():
 
-  file = open(f"{cp[0]}.csv", mode="w")
+  file = open(f"{cp[0].replace('/','_')}.csv", mode="w")
   writer = csv.writer(file)
   writer.writerow(['local','title','data','pay','regDate','url'])
   
