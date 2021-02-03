@@ -6,6 +6,31 @@
 </head>
 
 <body>
+  <header>
+    <h1>{{result.title}}</h1>
+    <div>
+      {{result.points}} points | By {{result.author}} | <a href="{{result.url}}" target="_blank">{{result.url}}</a>
+    </div>
+  </header>
+  <main>
+
+      {% for ch in result.children %}
+
+        {% if ch.author != None %}
+        <div>
+            <strong>{{ch.author}}:</strong>
+            {{ch.text | safe}}
+        </div>
+        {% else %}
+        <div>
+            [deleted]
+        </div>
+        {% endif %}
+        <hr>
+      {% endfor %}
+
+  </main>
+
 </body>
 
 </html>
