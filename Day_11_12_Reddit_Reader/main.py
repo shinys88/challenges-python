@@ -56,8 +56,6 @@ def read():
 
     if value is not None :
       getreddits.append(lang)
-
-  print(getreddits)
   
 
   for subreddit in getreddits :
@@ -79,7 +77,7 @@ def read():
         else :
           count = int(count)
       except :
-        count = float(count.replace("k",""))*1000
+        count = int(float(count.replace("k",""))*1000)
 
       post_url = "https://www.reddit.com"+post.select_one("a.SQnoC3ObvgnGjWt90zD9Z._2INHSNB8V5eaWp4P0rY_mE")['href']
 
@@ -87,8 +85,6 @@ def read():
       getposts.append({'title':title, 'count':count, 'lang':subreddit, 'url':post_url})
 
   getposts = sorted(getposts, key=(lambda x: x['count']), reverse=True)
-
-  print(getposts)
 
   return render_template("read.html", getreddits=getreddits, getposts=getposts)
 
