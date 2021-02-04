@@ -1,5 +1,6 @@
 import requests
 from flask import Flask, render_template, request
+from bs4 import BeautifulSoup
 
 """
 When you try to scrape reddit make sure to send the 'headers' on your request.
@@ -34,6 +35,62 @@ subreddits = [
 
 
 app = Flask("DayEleven")
+
+
+@app.route("/")
+def home():
+
+  return render_template("home.html", subreddits=subreddits)
+
+
+@app.route("/read")
+def read():
+
+  getposts = []
+  getreddits = []
+
+  args = request.args
+
+  for lang in subreddits:
+    value = args.get(lang)
+
+    if value is not None :
+      getreddits.append(lang)
+
+  print(getreddits)
+  
+
+  for subreddit in getreddits :
+
+    url = f"https://www.reddit.com/r/{subreddit}/top/?t=month"
+    result = requests.get(url)
+    soup = BeautifulSoup(result.text, "html.parser")
+
+    posts = soup.select("div.rpBJOHq2PR60pnwJlUyP0 div._1oQyIsiPHYt6nx7VOmd1sz")
+
+    for post in posts:
+      title = post.select_one("h3._eYtD2XCVieq6emjKBH3m").text
+      count = post.select_one("div._23h0-EcaBUorIHC-JZyh6J div._1E9mcoVn4MYnuBQSVDt1gC div._1rZYMD_4xY3gRcSS3p8ODO").text
+
+
+      try :
+        if count == "Vote":
+          count = 0
+        else :
+          count = int(count)
+      except :
+        count = float(count.replace("k",""))*1000
+
+      post_url = "https://www.reddit.com"+post.select_one("a.SQnoC3ObvgnGjWt90zD9Z._2INHSNB8V5eaWp4P0rY_mE")['href']
+
+      
+      getposts.append({'title':title, 'count':count, 'lang':subreddit, 'url':post_url})
+
+  getposts = sorted(getposts, key=(lambda x: x['count']), reverse=True)
+
+  print(getposts)
+
+  return render_template("read.html", getreddits=getreddits, getposts=getposts)
 
 
 app.run(host="0.0.0.0")
