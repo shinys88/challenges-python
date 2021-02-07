@@ -5,21 +5,76 @@
   <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet"></link>
 </head>
 
+<style>
+  *{
+    box-sizing: border-box;
+  }
+
+  body{
+    background-color:#e6e6e1;
+  }
+
+  main > div{
+    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, .3);
+    display:grid;
+    
+    width:100%;
+    grid-template-columns: 1fr auto auto 100px;
+    align-items: center;
+
+    background-color:#111111;
+    margin-bottom:20px;
+    border-radius:10px;
+
+    
+  }
+
+  main > div > * {
+    display:flex;
+    background-color:#f4f4f4;
+    height:100%;
+    border-radius:10px;
+    border:2px solid #111111;
+    border-right:0px;
+    align-items:center;
+    justify-content:center;
+  }
+
+  main > div > .title {
+    text-align:left;
+    padding: 0 10px;
+  }
+
+  main > div > .apply {
+    border-right:2px solid #111111;
+  }
+
+  main > div > .company {
+    padding:0 10px;
+  }
+
+  main > div > .site {
+    padding:0 10px;
+  }
+
+  
+</style>
+
 <body>
   <header>
     <h1>Remote Jobs</h1>
     <h3>{{joblen}} {{keyword}} jobs found.</h3>
-    <h5><a href="/">Export to CSV</a></h5>
+    <h5><a href="/export?keyword={{keyword}}">Export to CSV</a></h5>
     <h6><a href="/">← Go back</a></h6>
   </header>
   <main>
     
       {% for job in loadjobs %}
       <div>
-          <h3>{{job.title}}</h3>
-          <h4>{{job.company}}</h4>
-          <h4><a href="{{job.url}}" target="_blank">Apply</a></h4>
-        <hr>
+          <h4 class="title">{{job.title}}</h4>
+          <h4 class="company">{{job.company}}</h4>
+          <h5 class="site">{{job.site}}</h5>
+          <h4 class="apply"><a href="{{job.url}}" target="_blank">Apply</a></h4>
       </div>
       {% endfor %}
       
