@@ -1,0 +1,27 @@
+main > form{
+  margin:0 auto;
+  box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, .3);
+  border:2px solid #111111;
+  background-color:#f4f4f4;
+  border-radius:10px;
+}
+
+input[type=text]{
+  border:2px solid #111111;
+  border-radius:10px;
+  padding:10px 5px;
+  font-size:8px;
+  font-weight:400;
+}
+
+button{
+  font-size:8px;
+  font-weight: 400;
+  font-family: 'Press Start 2P', cursive;
+  background:#333333;
+  border:0px;
+}
+
+button:hover{
+  background:#000000;
+}

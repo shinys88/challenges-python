@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Faster+One&family=Nosifer&family=Press+Start+2P&family=Shojumaru&display=swap');
+*{
+  box-sizing: border-box;
+  font-family: 'Press Start 2P', cursive;
+  font-size:12px;
+  font-weight: 400;
+}
+
+body{
+  background-color:#e6e6e1;
+}
+
+h1{
+  font-size:50px;
+  font-family: 'Bowlby One SC', cursive;
+  font-weight: 400;
+}
+
+h3{
+  font-size:14px;
+  font-weight: 400;
+}
+
+h4{
+  font-size:12px;
+  font-weight: 400;
+}
+
+h5{
+  font-size:10px;
+  font-weight: 400;
+}
+
+h6{
+  font-size:8px!important;
+  font-weight: 400;
+}
+
+h6 a{
+  font-size:8px!important;
+  font-weight: 400;
+}
